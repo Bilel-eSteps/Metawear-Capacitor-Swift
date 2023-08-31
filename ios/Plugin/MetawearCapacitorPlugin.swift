@@ -74,7 +74,17 @@ public class MetawearCapacitorPlugin: CAPPlugin {
         self.stopLogging()
         call.resolve()
     }
-    
+     @objc func search(){
+        print("Swift: StopLogs called.")
+        self.search()
+        call.resolve()
+    }
+    func search(){
+        print("Swift: Searching for devices")
+        MetaWearScanner.shared.startScan(allowDuplicates: true) { (device) in
+        mySelf.notifyListeners("deviceFound", data: ["device": device])
+        }
+    }
     func connect() {
         print("Swift: time to connect!")
         if sensor != nil

@@ -2,6 +2,10 @@ export interface MetawearCapacitorPlugin {
 	/**
 	 * Connects to the metawear sensor.
 	 */
+	search(): Promise<null>;
+	/**
+	 * Connects to the metawear sensor.
+	 */
 	connect(): Promise<null>;
 	/**
 	 * Disconnect metawear sensor.

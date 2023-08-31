@@ -8,6 +8,9 @@ export class MetawearCapacitorWeb
 	async startAccelData(): Promise<null> {
 		throw new Error('Method not implemented.');
 	}
+	async search(): Promise<null> {
+		throw new Error('Method not implemented.');
+	}
 	async startGyroData(): Promise<null> {
 		throw new Error('Method not implemented.');
 	}
