@@ -3,10 +3,11 @@ export interface MetawearCapacitorPlugin {
 	 * Connects to the metawear sensor.
 	 */
 	search(): Promise<null>;
+	testFunc(data:DeviceOptions): Promise<null>;
 	/**
 	 * Connects to the metawear sensor.
 	 */
-	connect(): Promise<null>;
+	connect(data:DeviceOptions): Promise<null>;
 	/**
 	 * Disconnect metawear sensor.
 	 */
@@ -25,6 +26,7 @@ export interface MetawearCapacitorPlugin {
 	 * MetawearCapacitor.addListener('accelData', (accel) => { ... });
 	 */
 	startAccelData(): Promise<null>;
+	stopAccelData(): Promise<null>;
 	/**
 	 * Start gyro data streaming and on-board logging.
 	 * 
@@ -35,6 +37,7 @@ export interface MetawearCapacitorPlugin {
 	 * MetawearCapacitor.addListener('gyroData', (gyro) => { ... });
 	 */
 	startGyroData(): Promise<null>;
+	stopGyroData(): Promise<null>;
 	/**
 	 * Stop data streaming and on-board logging.
 	 */
@@ -58,4 +61,9 @@ export interface MetawearCapacitorPlugin {
 	 * Stop on-board logging.
 	 */
 	stopLogs(): Promise<null>;
+}
+export interface DeviceOptions {
+  freq?:number;
+  name?:string;
+  mac?:string;
 }

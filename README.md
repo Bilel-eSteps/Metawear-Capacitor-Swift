@@ -15,27 +15,64 @@ npx cap sync
 
 <docgen-index>
 
-* [`connect()`](#connect)
+* [`search()`](#search)
+* [`testFunc(...)`](#testfunc)
+* [`connect(...)`](#connect)
 * [`disconnect()`](#disconnect)
 * [`startData()`](#startdata)
 * [`startAccelData()`](#startacceldata)
+* [`stopAccelData()`](#stopacceldata)
 * [`startGyroData()`](#startgyrodata)
+* [`stopGyroData()`](#stopgyrodata)
 * [`stopData()`](#stopdata)
 * [`downloadData()`](#downloaddata)
 * [`stopLogs()`](#stoplogs)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### connect()
+### search()
 
 ```typescript
-connect() => Promise<null>
+search() => Promise<null>
 ```
 
 Connects to the metawear sensor.
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
+### testFunc(...)
+
+```typescript
+testFunc(data: DeviceOptions) => Promise<null>
+```
+
+| Param      | Type                                                    |
+| ---------- | ------------------------------------------------------- |
+| **`data`** | <code><a href="#deviceoptions">DeviceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
+### connect(...)
+
+```typescript
+connect(data: DeviceOptions) => Promise<null>
+```
+
+Connects to the metawear sensor.
+
+| Param      | Type                                                    |
+| ---------- | ------------------------------------------------------- |
+| **`data`** | <code><a href="#deviceoptions">DeviceOptions</a></code> |
 
 **Returns:** <code>Promise&lt;null&gt;</code>
 
@@ -87,6 +124,17 @@ MetawearCapacitor.addListener('accelData', (accel) =&gt; { ... });
 --------------------
 
 
+### stopAccelData()
+
+```typescript
+stopAccelData() => Promise<null>
+```
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
 ### startGyroData()
 
 ```typescript
@@ -100,6 +148,17 @@ MetawearCapacitor.addListener('gyroLogID', (logID) -&gt; { ... });
 
 Listen in JS for data stream with:
 MetawearCapacitor.addListener('gyroData', (gyro) =&gt; { ... });
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
+### stopGyroData()
+
+```typescript
+stopGyroData() => Promise<null>
+```
 
 **Returns:** <code>Promise&lt;null&gt;</code>
 
@@ -154,5 +213,17 @@ Stop on-board logging.
 **Returns:** <code>Promise&lt;null&gt;</code>
 
 --------------------
+
+
+### Interfaces
+
+
+#### DeviceOptions
+
+| Prop       | Type                |
+| ---------- | ------------------- |
+| **`freq`** | <code>number</code> |
+| **`name`** | <code>string</code> |
+| **`mac`**  | <code>string</code> |
 
 </docgen-api>

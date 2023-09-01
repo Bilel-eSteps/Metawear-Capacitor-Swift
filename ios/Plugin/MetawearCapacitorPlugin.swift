@@ -16,13 +16,20 @@ public class MetawearCapacitorPlugin: CAPPlugin {
     private var gyroSignal: OpaquePointer? = nil
     
     private var currentLogID: String = ""
-    
+    private var mac:String = ""
     private var finishedDownloadingGyro = false
     private var finishedDownloadingAccel = false
 
     
     @objc func connect(_ call: CAPPluginCall) {
         print("Swift: Connect called.")
+        if (call.getString("mac") == nil)
+        {
+            print("Swift: Mac adress undefined.")
+            call.resolve()
+            }
+        self.mac = call.getString("mac") ?? ""
+        print("Swift: device mac adress called.",mac)
         self.connect()
         call.resolve()
     }
@@ -43,16 +50,31 @@ public class MetawearCapacitorPlugin: CAPPlugin {
         self.startAccelData()
         call.resolve()
     }
+    @objc func testFunc(_ call: CAPPluginCall) {
+        //print("Swift: called test.",call.getString("name"))
+        
+        call.resolve()
+    }
     
     @objc func startAccelData(_ call: CAPPluginCall) {
         print("Swift: StartAccelData called.")
         self.startAccelData()
         call.resolve()
     }
-    
+    @objc func stopAccelData(_ call: CAPPluginCall) {
+        print("Swift: StartAccelData called.")
+        self.stopAccelData()
+        call.resolve()
+    }
+
     @objc func startGyroData(_ call: CAPPluginCall) {
         print("Swift: StartGyroData called.")
         self.startGyroData()
+        call.resolve()
+    }
+    @objc func stopGyroData(_ call: CAPPluginCall) {
+        print("Swift: StartGyroData called.")
+        self.stopGyroData()
         call.resolve()
     }
     
@@ -74,15 +96,23 @@ public class MetawearCapacitorPlugin: CAPPlugin {
         self.stopLogging()
         call.resolve()
     }
-     @objc func search(){
+     @objc func search(_ call: CAPPluginCall){
         print("Swift: StopLogs called.")
         self.search()
         call.resolve()
     }
     func search(){
         print("Swift: Searching for devices")
-        MetaWearScanner.shared.startScan(allowDuplicates: true) { (device) in
-        mySelf.notifyListeners("deviceFound", data: ["device": device])
+        if sensor != nil
+        {
+            print("Swift: silly JS, we're already connected!")
+            self.notifyListeners("successfulConnection", data: nil) // JS is being silly, we are already connected :D
+            return
+        }
+        MetaWearScanner.shared.startScan(allowDuplicates: false) { (device) in
+            MetaWearScanner.shared.stopScan()
+        print(device)
+            self.notifyListeners("deviceFound", data: ["device": device.mac])
         }
     }
     func connect() {
@@ -97,6 +127,10 @@ public class MetawearCapacitorPlugin: CAPPlugin {
             // sensor found
             MetaWearScanner.shared.stopScan() // stop searching for the sensor
             // Connect to the board we found
+            print("mac ",self.mac)
+            print("device.mac",device.mac)
+            print("comparison :",device.mac == self.mac)
+            if (device.mac == self.mac) {
             device.connectAndSetup().continueWith { t in
                 if let error = t.error {
                     // Error while trying to connect
@@ -115,10 +149,11 @@ public class MetawearCapacitorPlugin: CAPPlugin {
                     mbl_mw_led_write_pattern(device.board, &pattern, MBL_MW_LED_COLOR_BLUE)
                     mbl_mw_led_play(device.board)
                     mbl_mw_settings_set_connection_parameters(device.board, 7.5, 15, 0, 20000); // set the connection interval to extremely small (fast connection for log downloads)
-                    mbl_mw_acc_set_odr(device.board, 25) // accel will sample 25hz
+                    mbl_mw_acc_set_odr(device.board, 100) // accel will sample 25hz
                     mbl_mw_gyro_bmi160_set_odr(device.board, MBL_MW_GYRO_BOSCH_ODR_25Hz) // gyro will sample 25hz
                 }
             }
+          }
         }
     }
     
