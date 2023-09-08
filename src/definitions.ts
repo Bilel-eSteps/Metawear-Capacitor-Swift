@@ -9,6 +9,14 @@ export interface MetawearCapacitorPlugin {
 	 */
 	connect(data:DeviceOptions): Promise<null>;
 	/**
+	 * Connects to the metawear sensor number 1.
+	 */
+	connectSensor1(data:DeviceOptions): Promise<null>;
+	/**
+	 * Connects to the metawear sensor number 2.
+	 */
+	connectSensor2(data:DeviceOptions): Promise<null>;
+	/**
 	 * Disconnect metawear sensor.
 	 */
 	disconnect(): Promise<null>;

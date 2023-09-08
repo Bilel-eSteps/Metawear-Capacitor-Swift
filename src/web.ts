@@ -35,6 +35,12 @@ export class MetawearCapacitorWeb
 	async connect(data?:DeviceOptions): Promise<null> {
 		throw new Error('Method not implemented.');
 	}
+	async connectSensor1(data?:DeviceOptions): Promise<null> {
+		throw new Error('Method not implemented.');
+	}
+	async connectSensor2(data?:DeviceOptions): Promise<null> {
+		throw new Error('Method not implemented.');
+	}
 	async disconnect(): Promise<null> {
 		throw new Error('Method not implemented.');
 	}

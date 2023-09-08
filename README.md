@@ -18,6 +18,8 @@ npx cap sync
 * [`search()`](#search)
 * [`testFunc(...)`](#testfunc)
 * [`connect(...)`](#connect)
+* [`connectSensor1(...)`](#connectsensor1)
+* [`connectSensor2(...)`](#connectsensor2)
 * [`disconnect()`](#disconnect)
 * [`startData()`](#startdata)
 * [`startAccelData()`](#startacceldata)
@@ -69,6 +71,40 @@ connect(data: DeviceOptions) => Promise<null>
 ```
 
 Connects to the metawear sensor.
+
+| Param      | Type                                                    |
+| ---------- | ------------------------------------------------------- |
+| **`data`** | <code><a href="#deviceoptions">DeviceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
+### connectSensor1(...)
+
+```typescript
+connectSensor1(data: DeviceOptions) => Promise<null>
+```
+
+Connects to the metawear sensor number 1.
+
+| Param      | Type                                                    |
+| ---------- | ------------------------------------------------------- |
+| **`data`** | <code><a href="#deviceoptions">DeviceOptions</a></code> |
+
+**Returns:** <code>Promise&lt;null&gt;</code>
+
+--------------------
+
+
+### connectSensor2(...)
+
+```typescript
+connectSensor2(data: DeviceOptions) => Promise<null>
+```
+
+Connects to the metawear sensor number 2.
 
 | Param      | Type                                                    |
 | ---------- | ------------------------------------------------------- |

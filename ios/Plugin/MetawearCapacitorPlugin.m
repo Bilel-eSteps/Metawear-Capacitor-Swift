@@ -5,6 +5,8 @@
 // each method the plugin supports using the CAP_PLUGIN_METHOD macro.
 CAP_PLUGIN(MetawearCapacitorPlugin, "MetawearCapacitor",
            CAP_PLUGIN_METHOD(connect, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(connectSensor1, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(connectSensor2, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(testFunc, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(search, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(disconnect, CAPPluginReturnPromise);
